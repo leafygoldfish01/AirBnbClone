@@ -1,18 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MajorProject</title>
-</head>
+<% layout("layouts/boilerplate") %>
 <body>
-    <h3>Listing Details</h3>
-    <ul>
-        <li><%=listing.title%></li>
-        <li><%=listing.description%></li>
-        <li>&#8377 <%=listing.price.toLocaleString("en-IN")%></li>
-        <li><%=listing.location%></li>
-        <li><%=listing.country%></li>
-    </ul>
+   <div class="row">
+       <div class="col-8 offset-2">
+           <h3 class="my-3">Listing Details</h3>
+           <div class="card" style="max-width: 800px; margin: 0 auto;">
+               <img class="card-img-top" src="<%=listing.image%>" alt="<%=listing.title%>" style="max-height: 300px; object-fit: cover;">
+               <div class="card-body">
+                   <h5 class="card-title"><%=listing.title%></h5>
+                   <p class="card-text"><%=listing.description%></p>
+                   <ul class="list-group list-group-flush">
+                       <li class="list-group-item"><strong>Price:</strong> &#8377 <%=listing.price.toLocaleString("en-IN")%>/night</li>
+                       <li class="list-group-item"><strong>Location:</strong> <%=listing.location%>, <%=listing.country%></li>
+                   </ul>
+                   <div class="card-body">
+                       <a href="/listings/<%=listing._id%>/edit" class="btn btn-dark me-2">Edit this Listing</a>
+                       <form method="POST" action="/listings/<%=listing._id%>?_method=DELETE" class="d-inline">
+                           <button class="btn btn-danger">Delete this listing</button>
+                       </form>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </div>
 </body>
-</html>
